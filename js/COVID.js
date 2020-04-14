@@ -51,10 +51,15 @@ function setup(){
         recovered.innerHTML = "Total recovered: " + country.TotalRecovered
         recovered.className += "info"
 
+        var deathRate = document.createElement("div")
+        deathRate.innerHTML = "Death rate: " + ((country.TotalDeaths / country.TotalConfirmed) * 100).toFixed(2) + "%"
+        deathRate.className += "info"
+
         tag.appendChild(name)
         tag.appendChild(infected)
         tag.appendChild(recovered)
         tag.appendChild(dead)
+        tag.appendChild(deathRate)
         document.body.appendChild(tag)
     })
 }
