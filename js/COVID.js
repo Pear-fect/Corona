@@ -6,8 +6,32 @@ function preload() {
 }
 
 function setup(){
-    console.log(covidCases.Countries[214])
     createCanvas(0, 0)
+
+    var tag = document.createElement("div")
+    var name = document.createElement("div")
+    name.innerHTML = "Global"
+    name.className += "name"
+    tag.className += "country"
+
+    var dead = document.createElement("div")
+    dead.innerHTML = "Total deaths: " + covidCases.Global.TotalDeaths 
+    dead.className += "info"
+
+    var infected = document.createElement("div")
+    infected.innerHTML = "Total confrimed cases: " + covidCases.Global.TotalConfirmed
+    infected.className += "info"
+
+    var recovered = document.createElement("div")
+    recovered.innerHTML = "Total recovered: " + covidCases.Global.TotalRecovered
+    recovered.className += "info"
+
+    tag.appendChild(name)
+    tag.appendChild(infected)
+    tag.appendChild(recovered)
+    tag.appendChild(dead)
+    document.body.appendChild(tag)
+    
     covidCases.Countries.forEach(country => {
         var tag = document.createElement("div")
         var name = document.createElement("div")
