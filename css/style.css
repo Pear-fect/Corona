@@ -1,3 +1,8 @@
+:root{
+    --main-bg-color: #0f0f0f;
+    --main-hl-color: #ffffff;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -9,11 +14,12 @@ body{
     color: #20a6ff;
     align-items: center;
     flex-direction: column;
-    background-color: #0f0f0f;
+    background-color: var(--main-bg-color);
     justify-content: space-evenly;
 }
 
 .name {
+    color: var(--main-bg-color);
     font-size: 1.2em;
 }
 
@@ -22,18 +28,16 @@ body{
     display: flex;
     margin: 0.5em;
     padding: 0.5em;
-    transition: 0.2s;
+    transition: 0.1s;
     font-size: 2em;
-    color: #0f0f0f;
+    color: var(--main-hl-color);
     align-items: center;
     flex-direction: column;
-    background-color: #20a6ff;
     justify-content: space-evenly;
 }
 
 .country:hover{
-    background-color: #ffffff;
-    box-shadow: 0px 0px 100px #ffffff;
+    box-shadow: 0px 0px 20px;
 }
 
 .country:hover .info{
@@ -42,6 +46,6 @@ body{
 
 .info{
     align-self: flex-start;
-    border: #20a6ff 1px;
+    color: var(--main-bg-color);
     display: none;
 }
