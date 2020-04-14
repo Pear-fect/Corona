@@ -26,10 +26,15 @@ function setup(){
     recovered.innerHTML = "Total recovered: " + covidCases.Global.TotalRecovered
     recovered.className += "info"
 
+    var deathRate = document.createElement("div")
+    deathRate.innerHTML = "Death rate: " + ((covidCases.Global.TotalDeaths / (covidCases.Global.TotalConfirmed - covidCases.Global.TotalRecovered)) * 100).toFixed(2) + "%"
+    deathRate.className += "info"
+
     tag.appendChild(name)
     tag.appendChild(infected)
     tag.appendChild(recovered)
     tag.appendChild(dead)
+    tag.appendChild(deathRate)
     document.body.appendChild(tag)
     
     covidCases.Countries.forEach(country => {
@@ -52,7 +57,7 @@ function setup(){
         recovered.className += "info"
 
         var deathRate = document.createElement("div")
-        deathRate.innerHTML = "Death rate: " + ((country.TotalDeaths / country.TotalConfirmed) * 100).toFixed(2) + "%"
+        deathRate.innerHTML = "Death rate: " + ((country.TotalDeaths / (country.TotalConfirmed - country.TotalRecovered)) * 100).toFixed(2) + "%"
         deathRate.className += "info"
 
         tag.appendChild(name)
