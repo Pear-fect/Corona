@@ -1,12 +1,37 @@
 let cc
+let tags = []
 preload = () => { cc = loadJSON('https://api.covid19api.com/summary') }
 
 function setup(){
     createCanvas(0, 0)    
     createTag(cc.Global, "Global")
-    cc.Countries.forEach(country => {
-        createTag(country, country.Country)
-    })
+    cc.Countries.forEach(country => createTag(country, country.Country)) 
+    sortBy(1)
+    tags.forEach(t => document.body.appendChild(t))
+    console.log(tags)
+}
+
+function sortBy(sortN){
+    // 0 = namn
+    // 1 = number of cases
+    // 2 = recovered
+    // 3 = deaths
+    // 4 = deathrate
+
+    let n = tags.length
+    while(n > 1){
+        let newn = 0
+        for(let i = 1; i < n - 1; i++){
+            if(tags[i - 1].childNodes[sortN].innerHTML.match(/\d/g).join("") > tags[i].childNodes[sortN].innerHTML.match(/\d/g).join("")) {
+                temp = tags[i - 1]
+                tags[i - 1] = tags[i]
+                tags[i - 1] = temp
+                newn = i
+            }
+        }
+        n = newn
+    }
+    //tags.sort((a,b) => (a.childNodes[sortN].innerHTML.match(/\d/g).join("") > b.childNodes[sortN].innerHTML.match(/\d/g).join("")) ? 1 : ((b.childNodes[sortN].innerHTML.match(/\d/g).join("") > a.childNodes[sortN].innerHTML.match(/\d/g).join("")) ? -1 : 0));
 }
 
 function createTag(country, name){
@@ -29,7 +54,8 @@ function createTag(country, name){
     recovered.className += "info"
 
     var deathRate = document.createElement("div")
-    deathRate.innerHTML = "Death rate: " + ((country.TotalDeaths / country.TotalConfirmed) * 100).toFixed(2) + "%"
+    if(country.TotalDeaths / country.TotalConfirmed == NaN) deathRate.innerHTML = "Death rate: " + 0
+    else deathRate.innerHTML = "Death rate: " + ((country.TotalDeaths / country.TotalConfirmed)).toFixed(2)
     deathRate.className += "info"
 
     tag.appendChild(countryName)
@@ -41,5 +67,5 @@ function createTag(country, name){
     if(country.TotalConfirmed == 0 || country.TotalDeaths / country.TotalConfirmed == 0) color = '#eeeeee'
     tag.style.backgroundColor = color;
     tag.style.color = color;
-    document.body.appendChild(tag)
+    tags.push(tag)
 }

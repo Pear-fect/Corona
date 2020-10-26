@@ -1,17 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Merriweather:wght@300&family=Noto+Serif&display=swap');
+
 :root{
     --main-bg-color: #0f0f0f;
-    --main-hl-color: #ffffff;
 }
 
 *{
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    font-family: 'Lora', 'Merriweather', 'Noto Serif', serif;
 }
 
 body{
     display: flex;
-    color: #20a6ff;
     align-items: center;
     flex-direction: column;
     background-color: var(--main-bg-color);
@@ -30,7 +31,6 @@ body{
     padding: 0.5em;
     transition: 0.1s;
     font-size: 2em;
-    color: var(--main-hl-color);
     align-items: center;
     flex-direction: column;
     justify-content: space-evenly;
